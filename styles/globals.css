@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #f8fafc;
+  background-color: #212529;
+}
+
+.ql-editor .mention {
+  color: #399bf0;
+  background-color: transparent;
+}
+.ql-mention-list-container {
+  z-index: 1;
+  background-color: black;
+}
+.ql-mention-list {
+  background-color: inherit;
+  font-size: 0.9rem;
+}
+
+.ql-mention-list .selected {
+  background-color: #313131;
+  color: inherit;
+  font-size: inherit;
+}

@@ -23,7 +23,7 @@ const CustomButton = () => {
       classNames={{
         label: '',
         rightIcon: '',
-        root: 'text-white bg-gray-700 hover:bg-gray-600 m-10 px-10',
+        root: 'text-white bg-gray-600 hover:bg-gray-600 m-10 px-10',
       }}
     >
       Copy link to clipboard
