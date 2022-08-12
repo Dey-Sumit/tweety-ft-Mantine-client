@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import Avatar from './Avatar'
 import { MdOutlineIosShare } from 'react-icons/md'
+import { FiMoreHorizontal } from 'react-icons/fi'
 
 const ContentCard = ({
   content,
@@ -26,14 +27,19 @@ const ContentCard = ({
         onClick={() => !clientOnly && router.push(`/tweet/${_id}`)}
       >
         {/* top */}
-        <div className="flex items-center text-sm md:text-base ">
-          <span className="flex-shrink-0 text-white font-bold">{name} </span>
-          <span className="flex-shrink-0 mx-2 overflow-hidden text-gray-300 cursor-pointer overflow-ellipsis flex-grow-1 whitespace-nowrap ">
-            @{username}
+        <div className="flex  text-sm md:text-base justify-between">
+          <div>
+            <span className="flex-shrink-0 text-white font-bold">{name} </span>
+            <span className="flex-shrink-0 mx-1 overflow-hidden text-gray-300 cursor-pointer overflow-ellipsis flex-grow-1 whitespace-nowrap ">
+              @{username}
+            </span>
+            <span>· 2h</span>
+          </div>
+          <span className="mr-4">
+            <FiMoreHorizontal />
           </span>
-          <span> · 2h</span>
         </div>
-        <div className="whitespace-pre-wrap  ">
+        <div className="whitespace-pre-wrap  py-1">
           {JSON.parse(content).map((word, i) => {
             return typeof word.insert === 'string' ? (
               <span key={i}>{word.insert}</span>
@@ -79,13 +85,13 @@ const Hash = ({ text }: { text: string }) => {
 
   return (
     <span
-      className="text-blue-600"
+      className="text-bold text-[#399BF0]"
       onClick={(e) => {
         e.stopPropagation()
         router.push(`/tags/${text.slice(1)}`)
       }}
     >
-      {text}
+      {`#${text}`}
     </span>
   )
 }
@@ -94,19 +100,19 @@ const Mention = ({ text }: { text: string }) => {
 
   return (
     <span
-      className="text-red-600"
+      className="text-bold text-[#399BF0]"
       onClick={(e) => {
         e.stopPropagation()
         router.push(`/users/${text.slice(1)}`)
       }}
     >
-      {text}
+      {`@${text}`}
     </span>
   )
 }
 
 const InteractionSection = ({ comments = [] }) => (
-  <div className="flex justify-around  text-gray-400">
+  <div className="flex justify-between pt-2  text-gray-400  w-10/12">
     <div className="flex items-center cursor-pointer">
       <BiComment
         size={32}

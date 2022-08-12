@@ -20,16 +20,17 @@ interface NavbarLinkProps {
   onClick?(): void
 }
 
-function NavbarLink({ icon: Icon, label, active, onClick }: NavbarLinkProps) {
+// TODO : it gets a active prop , use this to set the active class
+function NavbarLink({ icon: Icon, label, onClick }: NavbarLinkProps) {
   return (
     <Button
       onClick={onClick}
       classNames={{
-        root: 'h-12 flex item-center hover:bg-gray-700 rounded-full mb-4',
+        root: 'h-12 flex item-center hover:bg-gray-800 rounded-full mb-4',
       }}
     >
       <Icon stroke={1.5} />
-      <span className="hidden sm:block ml-2">{label}</span>
+      <span className="hidden sm:block ml-4 font-bold text-lg">{label}</span>
     </Button>
   )
 }
@@ -61,7 +62,7 @@ export function NavbarMinimal() {
   return (
     <Navbar
       p="md"
-      className=" h-screen w-max sm:min-w-[200px] bg-transparent text-white"
+      className=" h-screen w-max sm:min-w-[220px] bg-transparent text-white border-r-0"
     >
       <Center>
         <span>Logo</span>

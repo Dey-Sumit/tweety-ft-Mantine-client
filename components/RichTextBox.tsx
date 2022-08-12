@@ -62,7 +62,7 @@ const RichTextBox = () => {
 
   return (
     <>
-      <div className="flex p-4 py-0 mt-8 border-b border-gray-600 mb-2">
+      <div className="flex p-4 py-0 mt-8 border-b border-gray-600 ">
         <Image
           width={44}
           height={44}
@@ -107,7 +107,7 @@ const RichTextBox = () => {
             )}
           </div>
 
-          <div className="flex pb-3 items-center">
+          <div className="flex pb-3 pl-4 items-end">
             <div>
               <label htmlFor="file-input">
                 <IoImageOutline className="w-6 h-6 text-[#399BF0] cursor-pointer " />
@@ -115,7 +115,6 @@ const RichTextBox = () => {
               <input
                 id="file-input"
                 onChange={onChangePicture}
-                // onClick={(e) => (e. = "")}
                 type="file"
                 name="attachment"
                 className="hidden"
