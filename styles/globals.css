@@ -2,14 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: 'Roboto', sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-  color: #f8fafc;
-  background-color: #212529;
-}
-
 .ql-editor .mention {
   color: #399bf0;
   background-color: transparent;

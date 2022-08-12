@@ -17,19 +17,6 @@ const tags = [
   { id: 3, value: 'Python' },
 ]
 
-const getRawContent = (content) => {
-  return content?.ops
-    ?.map((op) => {
-      if (typeof op.insert === 'string') {
-        return op.insert
-      } else if ('mention' in op.insert) {
-        return `xxx${op.insert.mention.value}yyy`
-      }
-    })
-    .join('')
-    .slice(0, -1)
-}
-
 function CreatePost() {
   const [value, setValue] = useState('')
   const [content, setContent] = useState<undefined | string>(undefined)
@@ -85,7 +72,7 @@ function CreatePost() {
 
       <div className="whitespace-pre-wrap ">
         {content &&
-          JSON.parse(content).map((word, i) => {
+          JSON.parse(content).map((word) => {
             return typeof word.insert === 'string' ? (
               <span>{word.insert}</span>
             ) : word.insert.mention.denotationChar === '@' ? (
