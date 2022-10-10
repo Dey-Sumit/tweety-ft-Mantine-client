@@ -38,3 +38,18 @@ export const useLoginMutation = (
 
   return useMutation(login, options)
 }
+
+// export const useAuth = (
+//   type: 'signup' | 'login',
+//   options?: Omit<
+//     UseMutationOptions<User, unknown, LoginData | SignUpData, unknown>,
+//     'mutationFn'
+//   >
+// ) => {
+//   const login = (data: LoginData): Promise<User> =>
+//     axios.post(ENDPOINTS.LOGIN, data).then((res) => res.data)
+//   const signUp = (data: SignUpData): Promise<User> =>
+//     axios.post(ENDPOINTS.SIGN_UP, data)
+
+//   return useMutation(type === 'login' ? login : signUp, options)
+// }

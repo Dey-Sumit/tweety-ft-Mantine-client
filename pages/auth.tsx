@@ -3,13 +3,27 @@ import Image from 'next/image'
 
 import heroImage from '@public/images/authHeroImage.png'
 import logo from '@public/images/logo.svg'
+import { useUser } from 'hooks/react-query/queries'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 
 const Auth = () => {
+  const { data: user } = useUser({
+    enabled: false,
+  })
+  const router = useRouter()
+
+  useEffect(() => {
+    if (user) {
+      router.push('/')
+    }
+  }, [])
+
   return (
     <div className="grid h-screen grid-cols-8 text-white">
       {/* left part */}
       <div className="hidden col-span-3 p-4 bg-blue-800 md:grid place-items-center">
-        <h1 className="mb-5 px-8 text-3xl font-semibold ">
+        <h1 className="px-8 mb-5 text-3xl font-semibold ">
           Tweety helps you to focus more on social life {'\n'} than your real
           life!{' '}
         </h1>

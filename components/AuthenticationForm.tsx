@@ -13,7 +13,10 @@ import {
   useLoginMutation,
   useSignupMutation,
 } from 'hooks/react-query/mutations'
-import { useUser } from 'hooks/react-query/queries'
+import toast from 'react-hot-toast'
+import { useRouter } from 'next/router'
+import { useQueryClient } from 'react-query'
+import ENDPOINTS from 'configs/endpoints'
 
 const inputClasses = {
   label: 'text-white',
@@ -27,6 +30,11 @@ export function AuthenticationForm() {
   //     console.log('user => ', data)
   //   },
   // })
+
+  const queryClient = useQueryClient()
+
+  const router = useRouter()
+
   const form = useForm({
     initialValues: {
       email: '',
@@ -56,15 +64,38 @@ export function AuthenticationForm() {
 
   const { mutate: signUp, isLoading } = useSignupMutation({
     onSuccess: (data) => {
-      console.log({ data })
+      queryClient.setQueryData(ENDPOINTS.ME, data)
+      router.push('/')
+
+      toast.success('Account created successfully', {
+        id: 'signup-success',
+      })
+    },
+    onError: () => {
+      toast.error('something went wrong, try again.', {
+        id: 'server-error',
+      })
     },
   })
 
   const { mutate: login, isLoading: isLoginProcessing } = useLoginMutation({
     onSuccess: (data) => {
+      queryClient.setQueryData(ENDPOINTS.ME, data)
+      router.push('/')
+
       console.log({ data })
+      toast.success('Logged in successfully', {
+        id: 'login-success',
+      })
+    },
+    onError: () => {
+      toast.error('invalid credentials', {
+        id: 'invalid-credentials',
+      })
     },
   })
+
+  // const {mutate: , isLoading: isLoginProcessing} = useAuth("login")
 
   // const {login,register,isLoading} =    useAuth() // CONCEPT DE CUSTOM HOOKS
 
@@ -166,6 +197,7 @@ export function AuthenticationForm() {
             classNames={{
               root: 'text-white bg-primaryDark hover:bg-primary px-10',
             }}
+            disabled={isLoading || isLoginProcessing}
           >
             {upperFirst(type)}
           </Button>

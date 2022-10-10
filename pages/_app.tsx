@@ -4,6 +4,9 @@ import { MantineProvider } from '@mantine/core'
 import '../styles/globals.css'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import axios from 'axios'
+import { ReactQueryDevtools } from 'react-query/devtools'
+import { Toaster } from 'react-hot-toast'
+import LayoutWrapper from '@components/LayoutWrapper'
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_BASE_ENDPOINT // the prefix of the URL only for the client side
 axios.defaults.withCredentials = true
@@ -34,7 +37,11 @@ export default function App(props: AppProps) {
             }
           }
         >
-          <Component {...pageProps} />
+          <LayoutWrapper>
+            <Component {...pageProps} />
+          </LayoutWrapper>
+          <Toaster position="bottom-center" />
+          <ReactQueryDevtools position="top-left" />
         </MantineProvider>
       </QueryClientProvider>
     </>

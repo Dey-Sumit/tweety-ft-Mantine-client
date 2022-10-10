@@ -30,12 +30,12 @@ function NavbarLink({ icon: Icon, label, onClick }: NavbarLinkProps) {
       }}
     >
       <Icon stroke={1.5} />
-      <span className="hidden sm:block ml-4 font-bold text-lg">{label}</span>
+      <span className="hidden ml-4 text-lg font-bold sm:block">{label}</span>
     </Button>
   )
 }
 
-const mockdata = [
+const navData = [
   { icon: IconHome2, label: 'Home' },
   { icon: IconGauge, label: 'Dashboard' },
   { icon: IconDeviceDesktopAnalytics, label: 'Analytics' },
@@ -48,7 +48,7 @@ const mockdata = [
 export function NavbarMinimal() {
   const [active, setActive] = useState(2)
 
-  const links = mockdata.map((link, index) => (
+  const links = navData.map((link, index) => (
     <NavbarLink
       {...link}
       key={link.label}

@@ -8,6 +8,7 @@ import RichTextEditor from '../components/RichText'
 import { MdCancel } from 'react-icons/md'
 import { IoImageOutline } from 'react-icons/io5'
 import ContentCard from './ContentCard'
+import { useUser } from 'hooks/react-query/queries'
 
 const people = [
   { id: 1, value: 'Bill Horsefighter' },
@@ -60,6 +61,10 @@ const RichTextBox = () => {
     e.target.value = null // else cant select the previous file
   }
 
+  const { data: user } = useUser({
+    // enabled: false,
+  })
+
   return (
     <>
       <div className="flex p-4 py-0 mt-8 border-b border-gray-600 ">
@@ -69,7 +74,7 @@ const RichTextBox = () => {
           layout="fixed"
           objectFit="cover"
           quality={100}
-          src={profileImage}
+          src={user?.profilePicture || profileImage}
           alt="avatar"
           className="rounded-full "
         />
@@ -107,7 +112,7 @@ const RichTextBox = () => {
             )}
           </div>
 
-          <div className="flex pb-3 pl-4 items-end">
+          <div className="flex items-end pb-3 pl-4">
             <div>
               <label htmlFor="file-input">
                 <IoImageOutline className="w-6 h-6 text-[#399BF0] cursor-pointer " />

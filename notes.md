@@ -25,9 +25,16 @@ Part 4(Don't know which part) :
 - install react-query and axios
 - add axios default
 - add env.local file and add env variables
- API_BASE_ENDPOINT = http://localhost:4000
- NEXT_PUBLIC_API_BASE_ENDPOINT = http://localhost:4000
+  API_BASE_ENDPOINT = http://localhost:4000
+  NEXT_PUBLIC_API_BASE_ENDPOINT = http://localhost:4000
 - wrap app with QueryClientProvider
 - create mutation for login and signup with typescript
 - FIRE handleAuth() and whoo... fix the cors error
 - create query for get user
+- handle error using react-hot-toast
+
+Part 5 :
+
+- Create a LayoutWrapper to make the "/me" request on refresh and redirect to login if not authenticated
+- add protected route for "/me" page
+- add condition to render auth page only if not authenticated
